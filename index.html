@@ -59,35 +59,28 @@
     <!-- Reto 3: Natalia Jaquelin Sánchez Morales -->
     <section class="card" id="reto-3">
       <h2>Reto 3: Filtrado de tablas</h2>
-      <fieldset>
-        <legend>Buscar</legend>
-        <input type="text" id="filtro" placeholder="Escribe para filtrar...">
-        <select id="columna">
-          <option value="-1">Todas las columnas</option>
-          <option value="0">Nombre</option>
-          <option value="1">Edad</option>
-          <option value="2">Ciudad</option>
-        </select>
-        <button type="button" id="limpiar">Limpiar</button>
-        <p id="contador"></p>
-      </fieldset>
+      <p class="description">Filtra las filas de la tabla en tiempo real a medida que tecleas en el campo de búsqueda.</p>
+      
+      <div style="margin: 8px 0;">
+        <input type="text" id="filtro" placeholder="Buscar..." style="width: 100%; padding: 6px; box-sizing: border-box;">
+      </div>
 
       <table id="tabla">
         <thead>
-          <tr><th>Nombre</th><th>Edad</th><th>Ciudad</th><th>Acción</th></tr>
+          <tr>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Ciudad</th>
+          </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          <tr><td>Juan</td><td>25</td><td>Madrid</td></tr>
+          <tr><td>Ana</td><td>30</td><td>Barcelona</td></tr>
+          <tr><td>Jose</td><td>32</td><td>Granada</td></tr>
+          <tr><td>Pedro</td><td>35</td><td>Valencia</td></tr>
+          <tr><td>Lucía</td><td>28</td><td>Sevilla</td></tr>
+        </tbody>
       </table>
-      <p id="mensaje"><b></b></p>
-
-      <fieldset>
-        <legend>Agregar persona</legend>
-        <input type="text" id="nNombre" placeholder="Nombre">
-        <input type="number" id="nEdad" placeholder="Edad" min="1">
-        <input type="text" id="nCiudad" placeholder="Ciudad">
-        <button type="button" id="agregar">Agregar</button>
-        <p id="error"></p>
-      </fieldset>
     </section>
 
     <!-- Reto 4: José Manuel Ramos -->
