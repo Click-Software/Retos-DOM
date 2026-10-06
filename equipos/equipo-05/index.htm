@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora simple</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Calculadora simple</h1>
+
+  <div class="fila">
+    <input type="number" id="num1" placeholder="Número 1">
+    <select id="operacion">
+      <option value="+">+</option>
+      <option value="-">-</option>
+      <option value="*">*</option>
+      <option value="/">/</option>
+      <option value="%">%</option>
+    </select>
+    <input type="number" id="num2" placeholder="Número 2">
+  </div>
+
+  <button id="calcular">Calcular</button>
+  <p>Resultado: <strong id="resultado">-</strong></p>
+
+  <script src="reto.js"></script>
+</body>
+</html>
