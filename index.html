@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lab U2-02 - Práctica de Git & Retos DOM</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Estilos mínimos para la tabla del reto 3 sin romper nada */
+    table { border-collapse: collapse; width: 100%; margin-top: 8px; }
+    th, td { border: 1px solid #ccc; padding: 4px; text-align: left; }
+    fieldset { margin: 8px 0; padding: 8px; }
+  </style>
 </head>
 <body>
   <header>
@@ -31,24 +37,57 @@
       </div>
     </section>
 
-    <!-- Reto 2 -->
+    <!-- Reto 2: Abril Saro Arteaga -->
     <section class="card" id="reto-2">
-      <h2>Reto 2</h2>
-      <p class="description">Espacio de salida para el reto 2.</p>
+      <h2>Reto 2: Calculadora simple</h2>
+      <p class="description">Escribe dos números, elige la operación y presiona el botón.</p>
+      <input type="number" id="reto2-num1" placeholder="Número 1">
+      <select id="reto2-op">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="%">%</option>
+      </select>
+      <input type="number" id="reto2-num2" placeholder="Número 2">
       <div class="output-box" id="salida-reto-2">
         Salida del Reto 2 aparecerá aquí...
       </div>
       <button type="button" id="btn-reto-2">Ejecutar Reto 2</button>
     </section>
 
-    <!-- Reto 3 -->
+    <!-- Reto 3: Natalia Jaquelin Sánchez Morales -->
     <section class="card" id="reto-3">
-      <h2>Reto 3</h2>
-      <p class="description">Espacio de salida para el reto 3.</p>
-      <div class="output-box" id="salida-reto-3">
-        Salida del Reto 3 aparecerá aquí...
-      </div>
-      <button type="button" id="btn-reto-3">Ejecutar Reto 3</button>
+      <h2>Reto 3: Filtrado de tablas</h2>
+      <fieldset>
+        <legend>Buscar</legend>
+        <input type="text" id="filtro" placeholder="Escribe para filtrar...">
+        <select id="columna">
+          <option value="-1">Todas las columnas</option>
+          <option value="0">Nombre</option>
+          <option value="1">Edad</option>
+          <option value="2">Ciudad</option>
+        </select>
+        <button type="button" id="limpiar">Limpiar</button>
+        <p id="contador"></p>
+      </fieldset>
+
+      <table id="tabla">
+        <thead>
+          <tr><th>Nombre</th><th>Edad</th><th>Ciudad</th><th>Acción</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <p id="mensaje"><b></b></p>
+
+      <fieldset>
+        <legend>Agregar persona</legend>
+        <input type="text" id="nNombre" placeholder="Nombre">
+        <input type="number" id="nEdad" placeholder="Edad" min="1">
+        <input type="text" id="nCiudad" placeholder="Ciudad">
+        <button type="button" id="agregar">Agregar</button>
+        <p id="error"></p>
+      </fieldset>
     </section>
 
     <!-- Reto 4: José Manuel Ramos -->
@@ -81,6 +120,8 @@
 
   <!-- Scripts organizados en la carpeta scripts/ -->
   <script src="scripts/Menor Subcadena.js"></script>
+  <script src="scripts/calculadora.js"></script>
+  <script src="scripts/filtrar-tabla.js"></script>
   <script src="scripts/generador-passwords.js"></script>
   <script src="scripts/mcm.js"></script>
 </body>
