@@ -8,6 +8,6 @@ Esta práctica corresponde al laboratorio **Lab U2-02: Práctica de Git**
 1. **Uriel Flores Zarate**
 2. **Abril Saro Arteaga**
 3. **Natalia Jaquelin Sanchez Morales**
-4. *[Nombre del integrante 4]*
-5. *[Nombre del integrante 5]*
+4. **José Manuel Ramos Iglesias**
+5. **Alexis Acosta Alvarez**
 
