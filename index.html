@@ -12,14 +12,23 @@
   </header>
 
   <main class="container">
-    <!-- Reto 1 -->
+    <!-- Reto 1: Uriel Flores -->
     <section class="card" id="reto-1">
-      <h2>Reto 1</h2>
-      <p class="description">Espacio de salida para el reto 1.</p>
-      <div class="output-box" id="salida-reto-1">
-        Salida del Reto 1 aparecerá aquí...
+      <h2>Reto 1: Subcadena contenida en otra</h2>
+      <div style="display: flex; flex-direction: column; gap: 8px; margin: 10px 0;">
+        <label>
+          Palabra:
+          <input type="text" id="input-palabra-1" placeholder="Ej: jhkavsfjhavfakjsfvvasfkj" style="width: 100%; padding: 6px; box-sizing: border-box;" />
+        </label>
+        <label>
+          Muestra:
+          <input type="text" id="input-muestra-1" placeholder="Ej: kjs" style="width: 100%; padding: 6px; box-sizing: border-box;" />
+        </label>
       </div>
-      <button type="button" id="btn-reto-1">Ejecutar Reto 1</button>
+      <button type="button" id="btn-reto-1">Buscar</button>
+      <div class="output-box" id="salida-reto-1">
+        El resultado aparecerá aquí...
+      </div>
     </section>
 
     <!-- Reto 2 -->
@@ -44,25 +53,28 @@
 
     <!-- Reto 4 -->
     <section class="card" id="reto-4">
-      <h2>Reto 4</h2>
-      <p class="description">Espacio de salida para el reto 4.</p>
-      <div class="output-box" id="salida-reto-4">
-        Salida del Reto 4 aparecerá aquí...
-      </div>
-      <button type="button" id="btn-reto-4">Ejecutar Reto 4</button>
+        <h2>Reto 4</h2>
+        <p class="description">Generador de passwords</p>
+        <div class="output-box" id="salida-reto-4" style="display: flex; align-items: center; gap: 8px; flex: 1;">
+            <input type="text" id="input-pass" style="width: 100%;"/>
+            <button type="button" id="btn-generate">Generar</button>
+            <button type="button" id="btn-copy">Copiar</button>
+        </div>
     </section>
 
-       <!-- Reto 5 -->
-    <section class="card" id="reto-3">
-      <h2>Reto 3</h2>
+    <!-- Reto 5 -->
+    <section class="card" id="reto-5">
+      <h2>Reto 5</h2>
       <p class="description">Espacio de salida para el reto 5.</p>
-      <div class="output-box" id="salida-reto-3">
+      <div class="output-box" id="salida-reto-5">
         Salida del Reto 5 aparecerá aquí...
       </div>
-      <button type="button" id="btn-reto-3">Ejecutar Reto 5</button>
+      <button type="button" id="btn-reto-5">Ejecutar Reto 5</button>
     </section>
   </main>
 
-  <script src="app.js"></script>
+  <!-- Scripts de los retos integrados -->
+  <script src="Menor Subcadena.js"></script>
+  <script src="generador-passwords.js"></script>
 </body>
 </html>
