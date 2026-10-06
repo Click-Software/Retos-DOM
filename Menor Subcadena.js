@@ -5,7 +5,7 @@ function menorSubcadena(muestra, palabra) {
     let copia = trozo;
     for (const letra of muestra) {
       if (!copia.includes(letra)) return false;
-      copia = copia.replace(letra, ''); // la consume para respetar repeticiones
+      copia = copia.replace(letra, '');
     }
     return true;
   }
@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Aquí se llama y se usa menorSubcadena
     const resultado = menorSubcadena(muestra, palabra);
 
     if (resultado) {
