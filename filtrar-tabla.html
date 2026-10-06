@@ -2,72 +2,137 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reto: Filtrado de tablas</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: 20px auto; padding: 0 10px; }
+    fieldset { margin-bottom: 15px; }
+    input, select, button { margin: 4px 2px; padding: 4px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #000; padding: 6px; text-align: left; }
+  </style>
 </head>
 <body>
   <h1>Reto: Filtrado de tablas</h1>
-  <p>Autora: Natalia Jaquelin Sánchez Morales</p>
+  <p>Natalia Jaquelin Sánchez Morales - Equipo Click</p>
 
-  <label for="filtro">Buscar:</label>
-  <input type="text" id="filtro" placeholder="Escribe para filtrar...">
+  <fieldset>
+    <legend>Buscar</legend>
+    <input type="text" id="filtro" placeholder="Escribe para filtrar...">
+    <select id="columna">
+      <option value="-1">Todas las columnas</option>
+      <option value="0">Nombre</option>
+      <option value="1">Edad</option>
+      <option value="2">Ciudad</option>
+    </select>
+    <button id="limpiar">Limpiar</button>
+    <p id="contador"></p>
+  </fieldset>
 
-  <table id="tabla" border="1">
+  <table id="tabla">
     <thead>
-      <tr><th>Nombre</th><th>Edad</th><th>Ciudad</th></tr>
+      <tr><th>Nombre</th><th>Edad</th><th>Ciudad</th><th>Acción</th></tr>
     </thead>
-    <tbody>
-      <tr><td>Juan</td><td>25</td><td>Madrid</td></tr>
-      <tr><td>Ana</td><td>30</td><td>Barcelona</td></tr>
-      <tr><td>Jose</td><td>32</td><td>Granada</td></tr>
-      <tr><td>Pedro</td><td>35</td><td>Valencia</td></tr>
-      <tr><td>Lucía</td><td>28</td><td>Sevilla</td></tr>
-    </tbody>
+    <tbody></tbody>
   </table>
-  <p id="mensaje"></p>
+  <p id="mensaje"><b></b></p>
 
-  <h2>Reseña</h2>
-  <ul>
-    <li><b>Eventos:</b> el evento <code>input</code> con <code>addEventListener</code> filtra mientras se escribe.</li>
-    <li><b>DOM:</b> <code>querySelectorAll</code> obtiene las filas del <code>tbody</code> y <code>style.display</code> las oculta o muestra sin tocar los encabezados.</li>
-    <li><b>Strings y arrays:</b> <code>toLowerCase</code>, <code>normalize</code> e <code>includes</code> comparan sin importar mayúsculas ni acentos; <code>Array.from</code> junta las celdas de cada fila.</li>
-  </ul>
-
-  <h2>Pruebas</h2>
-  <ul>
-    <li>J → Juan y Jose</li>
-    <li>Ju → solo Juan</li>
-    <li>BARCELONA → solo Ana</li>
-    <li>32 → solo Jose</li>
-    <li>(vacío) → todas las filas</li>
-    <li>xyz → "No hay coincidencias."</li>
-  </ul>
-
-  <h2>Conclusión</h2>
-  <p>Uní las celdas con un espacio para que la búsqueda no mezcle columnas, y quité acentos para que "lucia" encuentre "Lucía".
-  Como limitación, no se puede filtrar por una sola columna. Con Git aprendí a trabajar en mi propia rama e integrar con un Pull Request.</p>
+  <fieldset>
+    <legend>Agregar persona</legend>
+    <input type="text" id="nNombre" placeholder="Nombre">
+    <input type="number" id="nEdad" placeholder="Edad" min="1">
+    <input type="text" id="nCiudad" placeholder="Ciudad">
+    <button id="agregar">Agregar</button>
+    <p id="error"></p>
+  </fieldset>
 
   <script>
+    const personas = [
+      { nombre: "Juan",  edad: 25, ciudad: "Madrid" },
+      { nombre: "Ana",   edad: 30, ciudad: "Barcelona" },
+      { nombre: "Jose",  edad: 32, ciudad: "Granada" },
+      { nombre: "Pedro", edad: 35, ciudad: "Valencia" },
+      { nombre: "Lucía", edad: 28, ciudad: "Sevilla" }
+    ];
+
+    const filtro   = document.getElementById("filtro");
+    const columna  = document.getElementById("columna");
+    const contador = document.getElementById("contador");
+    const mensaje  = document.getElementById("mensaje");
+    const error    = document.getElementById("error");
+    const tbody    = document.querySelector("#tabla tbody");
+
     function normalizar(texto) {
       return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
     }
 
+    function crearFila(p) {
+      const tr = document.createElement("tr");
+      [p.nombre, p.edad, p.ciudad].forEach(function (valor) {
+        const td = document.createElement("td");
+        td.textContent = valor;
+        tr.appendChild(td);
+      });
+      const tdAccion = document.createElement("td");
+      const btn = document.createElement("button");
+      btn.textContent = "Eliminar";
+      btn.addEventListener("click", function () {
+        tr.remove();
+        filterTable();
+      });
+      tdAccion.appendChild(btn);
+      tr.appendChild(tdAccion);
+      tbody.appendChild(tr);
+    }
+
     function filterTable() {
-      const busqueda = normalizar(document.getElementById("filtro").value);
-      const filas = document.querySelectorAll("#tabla tbody tr");
+      const busqueda = normalizar(filtro.value);
+      const col = parseInt(columna.value);
+      const filas = tbody.querySelectorAll("tr");
       let visibles = 0;
 
       filas.forEach(function (fila) {
-        const textoFila = Array.from(fila.cells).map(c => c.textContent).join(" ");
-        const coincide = normalizar(textoFila).includes(busqueda);
+        const celdas = Array.from(fila.cells).slice(0, 3);
+        const texto = col === -1
+          ? celdas.map(c => c.textContent).join(" ")
+          : celdas[col].textContent;
+        const coincide = normalizar(texto).includes(busqueda);
         fila.style.display = coincide ? "" : "none";
         if (coincide) visibles++;
       });
 
-      document.getElementById("mensaje").textContent =
-        visibles === 0 ? "No hay coincidencias." : "";
+      contador.textContent = "Mostrando " + visibles + " de " + filas.length;
+      mensaje.textContent = (filas.length > 0 && visibles === 0) ? "No hay coincidencias." : "";
     }
 
-    document.getElementById("filtro").addEventListener("input", filterTable);
+    function agregarPersona() {
+      const nombre = document.getElementById("nNombre").value.trim();
+      const edad   = parseInt(document.getElementById("nEdad").value);
+      const ciudad = document.getElementById("nCiudad").value.trim();
+
+      if (nombre === "" || ciudad === "" || isNaN(edad) || edad <= 0) {
+        error.textContent = "Completa nombre, ciudad y una edad mayor a 0.";
+        return;
+      }
+      error.textContent = "";
+      crearFila({ nombre: nombre, edad: edad, ciudad: ciudad });
+      document.getElementById("nNombre").value = "";
+      document.getElementById("nEdad").value = "";
+      document.getElementById("nCiudad").value = "";
+      filterTable();
+    }
+
+    filtro.addEventListener("input", filterTable);
+    columna.addEventListener("change", filterTable);
+    document.getElementById("limpiar").addEventListener("click", function () {
+      filtro.value = "";
+      columna.value = "-1";
+      filterTable();
+    });
+    document.getElementById("agregar").addEventListener("click", agregarPersona);
+
+    personas.forEach(crearFila);
+    filterTable();
   </script>
 </body>
 </html>
