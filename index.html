@@ -14,12 +14,21 @@
   <main class="container">
     <!-- Reto 1 -->
     <section class="card" id="reto-1">
-      <h2>Reto 1</h2>
-      <p class="description">Espacio de salida para el reto 1.</p>
-      <div class="output-box" id="salida-reto-1">
-        Salida del Reto 1 aparecerá aquí...
+      <h2>Reto 1: Subcadena contenida en otra</h2>
+      <div style="display: flex; flex-direction: column; gap: 8px; margin: 10px 0;">
+        <label>
+          Palabra:
+          <input type="text" id="input-palabra-1" placeholder="Ej: jhkavsfjhavfakjsfvvasfkj" style="width: 100%; padding: 6px; box-sizing: border-box;" />
+        </label>
+        <label>
+          Muestra:
+          <input type="text" id="input-muestra-1" placeholder="Ej: kjs" style="width: 100%; padding: 6px; box-sizing: border-box;" />
+        </label>
       </div>
-      <button type="button" id="btn-reto-1">Ejecutar Reto 1</button>
+      <button type="button" id="btn-reto-1">Buscar</button>
+      <div class="output-box" id="salida-reto-1">
+        El resultado aparecerá aquí...
+      </div>
     </section>
 
     <!-- Reto 2 -->
