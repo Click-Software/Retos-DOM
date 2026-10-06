@@ -1,0 +1,5 @@
+body { font-family: sans-serif; max-width: 500px; margin: 2rem auto; }
+.fila { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+input, select, button { padding: 0.5rem; font-size: 1rem; }
+input { flex: 1; min-width: 0; }
+button { cursor: pointer; }
